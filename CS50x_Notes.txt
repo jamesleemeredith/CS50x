@@ -1,0 +1,321 @@
+Harvard CS50 - CS50’s Introduction to Computer Science
+official course website: https://cs50.harvard.edu/x/
+
+WEEK 0 - SCRATCH
+Essentially, computer programming is about taking some input and creating some output - thus solving a problem. What happens in between the input and output, what we could call a black box, is the focus of this course.
+
+Computers speak binary! It’s from the term binary digit that we get a familiar term called bit. A bit is a zero or one: on or off.
+
+Binary is used to represent the millions of transistors in your computer turning on or off.
+
+8 bits = 1 byte
+
+8 bits (aka 1 byte) allow us to hold values up to 255
+
+There are actually ternary computers that exist that use ternary rather than binary
+
+But what if we can to use binary to represent things beyond just numbers? Enter character encoding standards!
+
+ASCII is a method of encoding used to convert raw binary to English letters and characters we're more familiar with (ex. 01000001 = "A")
+
+To accommodate characters beyond English, Unicode was developed. Even things like emojis and Chinese characters can be accommodated using Unicode.
+
+But beyond text, how are colors in things like images and video represented in bytes?
+
+RGB!
+
+Each value of R, G, and B is a byte, so a single color in RGB would be 3 bytes (ex. 0,255,255)
+
+How is data used to represent video?
+Video is really just a series of images shown in sequence, so we store the image data in much the same way as static image data.
+
+But what about the audio data in a video file?
+Much the same way as encoding characters and textual data, we can dedicate bytes to encoding things like the frequency (aka pitch), duration, and volume of a particular sound in an audio file
+
+So if all these different types of data are simply stored as zeros and ones, how does the computer know whether, for example, 72,73,33 is supposed to be the message "HI!" or the color yellow? - It all depends on context! The file type and software we use to open a file will dictate how the data is interpreted
+
+Algorithms:
+Step by step instructions for solving some problem
+
+Ultimately, the goal of a programmer is to translate algorithms into computer programming code like C or Python in order to solve real-world problems
+
+Often before diving into code directly though, we'll first sketch out the algorithm using English-like phrases called Pseudocode!
+
+Anatomy of Pseudocode:
+- Functions
+- Conditionals
+- Boolean Expressions
+- Loops
+
+[SCRATCH TUTORIAL, see video]
+Keywords:
+- Function & Arguments
+- Output/side effect
+- Return Value
+- Variable
+- User-Defined Functions
+
+WEEK 1 - C
+
+In the real world, programmers write source code! This week we'll be focusing on the C language to write the source code for our programs.
+
+But ultimately, computers only understand machine code (aka binary 0's and 1's) - so how does the computer understand our source code?
+
+Via a compiler! A program that converts source code into machine code!
+
+[See video for example program]
+
+Escape sequences:
+- \n
+- \r
+- \"
+- \'
+- \\
+
+Header files:
+#include <stdio.h>
+
+grants access to the desired libraries
+
+Libraries:
+Collections of code that someone else wrote for you
+
+Note: The #include <> is similar to an import statement in Python
+
+Useful Terminal Commands:
+- cd		"Change Directory" (Not specifying a directory afterwards will simply take you back to root)
+- cp		"Copy"
+- ls		"List"
+- mkdir		"Make Directory"
+- mv		"Move" (Can also be used to rename a file)
+- rm		"Remove"
+- rmdir		"Remove Directory"
+
+C Variable Data Types:
+- string
+- int
+- float (typically offering about 6-7 decimal digits of precision)
+- double (providing significantly more precision, usually around 15-17 decimal digits.)
+- long (for really long integers)
+- char (for single characters)
+- bool
+
+Format Codes (To use with printf):
+- %c
+- %f
+- %i
+- %li
+- %s
+
+Conditionals:
+if x (condition), then y (side effect)
+
+
+Example In C:
+if ( x > y )
+{
+ printf("x is greater than y\n");
+}
+
+
+Example using if...else:
+if (x > y)
+{
+ printf("x is greater than y\n");
+}
+else
+{
+  printf("x is NOT greater than y\n");
+}
+
+Example using if... else if:
+if (x > y)
+{
+ printf("x is greater than y\n");
+}
+else if (x < y)
+{
+  printf("x is less than y\n");
+}
+else if (x == y) // note that if x and y are both numbers this condition is uneccessary
+{
+  printf("x is equal to y\n");
+}
+
+Comparitive Operators:
+- =
+- <
+- <=
+- >
+- >=
+- ==
+- !=
+
+Variables:
+int counter = 0;
+counter = counter + 1 //OR counter +=1 OR counter++
+
+Why don't we import ALL the libraries available for C when we run a program?
+PERFORMANCE! The less code we have to load and run, the faster our program runs
+
+Logical Operators:
+- || OR
+- && AND
+
+Loops:
+- While Loop Syntax:
+while (condition)
+{
+	side effect;
+}
+- For Loop Syntax:
+for (int i = 0; i < 3; i++)
+{
+	printf("meow\n")
+}
+
+Do-While Loops:
+do
+{
+	side effect
+}
+while (condition);
+
+NOTE: You can press Control-C to interrupt a program that's stuck looping infinitely. To do so programatically, use the break keyword
+
+User-Defined Functions:
+In C:
+void func_name(void)
+{
+	side effect;
+}
+
+KEEP IN MIND VARIABLE SCOPE!
+- Global
+- Local
+
+EVALUTING THE QUALITY OF CODE:
+Assess your code based on:
+- correctness
+- design
+- style
+
+CONSTANTS:
+- variables that should NEVER change after being initially declared
+ex:
+const int n = 3
+
+COMMENTS:
+- //
+
+MATHEMATIC OPERATORS:
+- +
+- -
+- *
+- / (NOTE: Beware of truncation if dividing by two integers!)
+- **
+- %
+
+CASTING:
+Ex)
+int x = 1;
+int y = 2;
+
+printf("%f\n", (float) x/y); //NOTE: BEWARE FLOATING-POINT IMPRECISION!
+
+WEEK 02 - ARRAYS
+Command Line Arguments - Arguments that modify how a command runs in a CLI program
+
+But what does it actually mean to "compile" code?
+Compiling is a multi-step process consisting of the following:
+Perfect — here’s how CS50 introduces the **four main stages of compiling** (which happen under the hood when you run something like `make hello` or `clang hello.c -o hello`):
+
+---
+
+### 🧩 **1) Preprocessing**
+
+* The **preprocessor** handles all lines that begin with `#`, such as `#include` and `#define`.
+* It **copies in the contents** of header files (like `stdio.h` and `cs50.h`) and **expands macros** before the compiler sees your code.
+* Result: a single expanded source file with all includes and macros resolved.
+
+🧠 Example:
+
+```c
+#include <stdio.h>
+#define PI 3.14
+```
+
+becomes (conceptually):
+
+```c
+// contents of stdio.h here
+double pi = 3.14;
+```
+
+---
+
+### ⚙️ **2) Compiling**
+
+* The **compiler proper** translates the preprocessed C code into **assembly language** (human-readable instructions specific to your CPU architecture).
+* This is where most **syntax errors** are caught.
+* Result: an **assembly file** (`.s`) that describes low-level operations.
+
+🧠 Think of this step as:
+C → Assembly
+
+---
+
+### ⚙️ **3) Assembling**
+
+* The **assembler** converts the assembly code into **machine code** (binary).
+* It outputs an **object file** (`.o`) — a partially compiled file that the computer can’t yet run on its own because it might still depend on external code (like library functions).
+* Result: `.o` file containing raw machine instructions.
+
+🧠 Think of this step as:
+Assembly → Object (binary code)
+
+---
+
+### 🧱 **4) Linking**
+
+* The **linker** combines your object file(s) with any **libraries** you’re using (like `libcs50` or the C standard library).
+* It resolves external references — for example, when your code calls `printf()`, the linker connects that call to the compiled code for `printf` in the library.
+* Result: a single **executable program** (like `hello`).
+
+🧠 Think of this step as:
+Object files + Libraries → Executable
+
+---
+
+### 🧠 Summary Table
+
+| Step                 | Tool         | Input             | Output          | Purpose                             |
+| -------------------- | ------------ | ----------------- | --------------- | ----------------------------------- |
+| **1. Preprocessing** | Preprocessor | `.c` source       | expanded source | handle `#include` / `#define`       |
+| **2. Compiling**     | Compiler     | preprocessed code | `.s` assembly   | translate C → assembly              |
+| **3. Assembling**    | Assembler    | `.s` assembly     | `.o` object     | translate assembly → machine code   |
+| **4. Linking**       | Linker       | `.o` files + libs | executable      | combine everything into one program |
+
+---
+
+DEBUGGING
+Common Techniques for Debugging:
+- Rubber Duck Debugging
+- Printing line by line (or chunk by chunk)
+- IDE debugger tool
+
+DATA STRUCTURES
+Array - a sequence of values of the same data type back to back to back in memory
+int scores[3];
+scores[0] = 72;
+scores[1] = 73;
+scores[2] = 33;
+
+String - a string, in memory, is essentially the same as an array of characters (it actually includes a "termination" character NUL, sometimes denoted with \0, unbeknownst to most users that specifies to end it in memory)
+
+COMMAND-LINE ARGUMENTS
+arguments included in the command line when executing a program that modify how it runs
+
+EXIT STATUS
+But why does int main(void) return an int?
+
