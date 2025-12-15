@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void meow (int n)
+void meow(int n)
 {
     for (int i = 0; i < n; i++)
     {
@@ -18,7 +18,7 @@ int get_positive_int(void)
     return n;
 }
 
-int main (void)
+int main(void)
 {
     int times = get_positive_int();
     meow(times);
