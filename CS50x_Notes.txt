@@ -315,6 +315,9 @@ String - a string, in memory, is essentially the same as an array of characters 
 
 COMMAND-LINE ARGUMENTS
 arguments included in the command line when executing a program that modify how it runs
+- argc stands for "argument count" and represents the number of command-line arguments passed to the program, including the program's name itself.
+- argv stands for "argument vector" and is an array of strings (character arrays) that contains the actual arguments. argv[0] is the name of the program, and argv[1] to argv[argc-1] are the additional arguments.
+
 
 EXIT STATUS
 But why does int main(void) return an int?
