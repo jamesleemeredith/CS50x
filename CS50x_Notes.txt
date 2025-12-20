@@ -322,3 +322,39 @@ arguments included in the command line when executing a program that modify how 
 EXIT STATUS
 But why does int main(void) return an int?
 
+## WEEK 03 - ALGORITHMS
+Computers can't "see" the contents of their memory without methodically checking a memory address.
+
+When searching for data stored in memory, we employee different algorithms to attempt to find the data as efficiently as possible. This gives rise to different categories of algorithms that define each approach.
+
+### Types of Algorithms
+
+#### Linear Search
+- Searching one-by-one "left to right" metaphorically
+
+#### Binary Search
+- "Divide and conquer" 
+
+But how do we define the efficiency of an algorithm?
+
+### Running Time
+### Measuring the Worst-Case Scenario: Big O Notation
+Examples:
+- O(1)
+- O(n) - linear search
+- O(n**2)
+- O(log n) - binary search
+
+### Measuring the Best-Case Scenario: Ω
+- Ω(1) - aka one step
+- Ω(n)
+- Ω(n**2)
+- Ω(log n)
+
+### When they're both the same: θ
+- θ(1) - aka one step
+- θ(n)
+- θ(n**2)
+- θ(log n)
+
+All of these are examples of Asymtotic Notation
