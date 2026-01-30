@@ -358,3 +358,133 @@ Examples:
 - θ(log n)
 
 All of these are examples of Asymtotic Notation
+
+### Data Structures
+Data structures are
+ways to organize, store, and manage data in a computer for efficient access and manipulation, forming the backbone of software by defining relationships between data and the operations that can be performed on it, with common types including arrays, linked lists, stacks, queues, trees, and graphs, crucial for building everything from databases to search engines. They allow for performance optimization by choosing the right structure for the task, balancing efficiency in searching, inserting, and deleting data.
+
+We can define our own custom Data structures in C using the typedef struct command:
+
+typedef struct
+{
+	string name;
+	string number;
+}
+person;
+
+### Sorting
+- Selection Sort (not very efficient)
+- Bubble Sort
+
+### Recursion
+A recursive algorithm is an algorithm which calls itself with "smaller (or simpler)" input values, and which obtains the result for the current input by applying simple operations to the returned value for the smaller (or simpler) input.
+
+### Merge Sort
+
+## WEEK 04: MEMORY
+hexidecimal - base 16
+
+We can use the "&" character to refer to the memory address of a variable, as in:
+#include <stdio.h>
+
+int main(void)
+{
+    int n = 50;
+    printf("%p\n",&n);
+}
+
+### Pointers
+Pointers in programming are variables that store the memory address of another variable, allowing indirect access and manipulation of data, crucial for dynamic memory, efficient data structures (like linked lists), and function arguments, though they require careful handling to avoid errors like null pointer dereferences.
+
+Ex:
+int n = 50;
+int *p = &n;
+
+#### Pointer Arithemetic
+We can do arithemetic on pointers to access nearby memory addresses. For example:
+
+char *s = "HI!";
+printf("%c\n",*s);
+printf("%c\n",*(s + 1));
+printf("%c\n",*(s + 2));
+
+#### Copying Strings
+It turns out we can't simply set string1 = string2 to create a unique copy of a string variable. Since char * is really just a pointer in C, we need to take a different approach.
+
+Malloc and Free
+When can directly tell the computer to reserve sections of the memory for using malloc, although afterwards we need to be sure to "Free" it aftewards to avoid "memory leaks"
+
+In the C programming language,
+malloc and free are the fundamental functions used for dynamic memory management. They allow programs to request memory from the system at runtime (from the "heap") and release it when it is no longer needed. 
+1. malloc (Memory Allocation)
+The malloc function reserves a specific block of memory on the heap. 
+
+    Syntax: void *malloc(size_t size);
+    Parameters: It takes one argument: the total number of bytes to allocate.
+    Return Value: It returns a void* (void pointer) to the first byte of the allocated block. If the system cannot fulfill the request (e.g., out of memory), it returns NULL.
+    Initialization: The memory is not initialized; it contains "garbage" values from previous uses. 
+
+2. free (Memory Deallocation)
+The free function releases previously allocated memory back to the system so it can be reused. 
+
+    Syntax: void free(void *ptr);
+    Parameters: It takes the pointer originally returned by malloc (or calloc/realloc).
+    Return Value: It does not return any value (void).
+    Behavior: If the pointer passed is NULL, the function does nothing. Attempting to free a pointer that has already been freed (a "double free") or was not returned by an allocation function results in undefined behavior. 
+
+Key Usage Rules
+
+    Include Header: Both functions are defined in the <stdlib.h> header file.
+    Match Every Malloc: Every successful call to malloc should have a corresponding call to free to prevent memory leaks.
+    Check for NULL: Always verify that malloc did not return NULL before using the returned pointer to avoid program crashes.
+    Dangling Pointers: After calling free(ptr), the pointer ptr still holds the memory address, but that memory is no longer safe to access. It is good practice to set the pointer to NULL after freeing it. 
+
+Comparison with C++ Alternatives
+While malloc and free can be used in C++, it is standard practice to use new and delete instead. 
+
+    new automatically calculates the size based on the type and calls the object's constructor.
+    delete calls the object's destructor before releasing the memory.
+    malloc and free do not invoke constructors or destructors; they only handle raw bytes of memory. 
+
+Use a program like Valgrind to check your program for memory leaks
+
+Memory Layout goes as follows:
+- Machine code
+- globals
+- heap
+|
+V
+^
+|
+- stack
+
+Passing by reference:
+
+
+Stack and heap overflows are
+critical memory management failures that occur in different regions of a program's memory. While both can lead to application crashes or security vulnerabilities, they differ in their cause and impact. 
+Stack Overflow
+A stack overflow occurs when the call stack—the memory reserved for tracking function calls and local variables—exceeds its pre-allocated limit. 
+
+    Primary Cause: Typically caused by excessively deep or infinite recursion where each call adds a new frame to the stack until it runs out of space. It can also occur if very large arrays are declared as local variables.
+    Security Risk: A specific type known as a stack buffer overflow occurs when data written to a buffer on the stack overwrites adjacent memory, such as a function's return address. Attackers can exploit this to redirect program execution to malicious code, often called "stack smashing".
+    Management: Handled automatically by the system; memory is freed immediately when a function ends. 
+
+Heap Overflow
+A heap overflow occurs when a program writes more data than intended into a memory block allocated on the heap—the region used for dynamic memory allocation at runtime. 
+
+    Primary Cause: Improper bounds checking when using functions like malloc(), calloc(), or memcpy(). It can also refer to heap exhaustion, where a program continuously requests memory (often due to a memory leak) until no more is available.
+    Security Risk: Because the heap stores complex data structures, objects, and metadata, an overflow can corrupt linked-list pointers or function pointers, leading to arbitrary code execution or system instability.
+    Management: Handled manually by the programmer; memory must be explicitly allocated and deallocated (freed). 
+
+Both are specfic cases of what's generally referred to as a buffer overflow
+
+### File I/O
+
+
+## WEEK 05: DATA STRUCTURES
+### Abstract Data Types
+#### Queues
+Queues use FIFO priority - First In First Out!
+- enqueue
+- dequeue
